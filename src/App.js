@@ -1,5 +1,7 @@
+import StageOne from "./stages/stageOne/StageOne";
+
 function App() {
-  return <div>Hello world!</div>;
+  return <StageOne />;
 }
 
 export default App;
