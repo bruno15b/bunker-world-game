@@ -1,17 +1,29 @@
-import { useState } from "react";
-import "./StageOne.css";
+import { useEffect } from "react";
+import HappyMan from "../../components/players/HappyMan";
+import StartGameScreen from "../../components/screens/StartGameScreen";
+import { TerrainOne, Floor } from "./StageOne.styles";
 
 const StageOne = () => {
-  const [numberQuantity, setNumberQuantity] = useState(0);
-  const surpresa = "Sua surpresa -> Hello World";
-  const handleClick = () => {
-    setNumberQuantity(numberQuantity + 1);
+  const handleClickKeyDown = (event) => {
+    console.log(event);
   };
+
+  useEffect(() => {
+    window.addEventListener("keypress", handleClickKeyDown);
+    return () => {
+      window.removeEventListener("keypress", handleClickKeyDown);
+    };
+  }, []);
+
   return (
-    <section className="container">
-      <div>{numberQuantity > 10 && surpresa}</div>
-      <button onClick={handleClick}>Clique aqui até surpresa</button>
-    </section>
+    <>
+      <StartGameScreen></StartGameScreen>
+      <TerrainOne>
+        <Floor>
+          <HappyMan />
+        </Floor>
+      </TerrainOne>
+    </>
   );
 };
 
